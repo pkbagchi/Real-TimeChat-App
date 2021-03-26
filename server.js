@@ -38,6 +38,7 @@ io.on('connection', (socket) => {
                     socket.emit('message',dataElement); //emits message back to the user for display
                 });
                 socket.to(data.toUser).emit('message',dataElement);
+                socket.to(data.fromUser).emit('message',dataElement);
                 /* onlineUsers.find({"name":data.toUser}).toArray(function(err, res) {
                     if(err) throw err;
                     //if the recipient is found online, the message is emmitted to him/her
@@ -78,6 +79,7 @@ io.on('connection', (socket) => {
                 var online = db.db(dbname).collection(userCollection);
                 online.insertOne(onlineUser,(err,res) =>{ //inserts the logged in user to the collection of online users
                     if(err) throw err;
+
                     console.log(onlineUser.name + " is online...");
                     socket.join(onlineUser.name);
                 });

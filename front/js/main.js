@@ -13,6 +13,8 @@ function storeDetails() {
     fromUser = document.getElementById('from').value;
     toUser = document.getElementById('to').value;
     element = document.querySelectorAll(".chat-messages");
+    document.getElementById("donebtn").style.display = "none"; 
+    
     socket.emit('userDetails',{fromUser,toUser}); //emits details of established chat
 }
 
